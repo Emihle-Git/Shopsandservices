@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#6D28D9">
+<title>Shops and Services</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<style>
+  :root {
+    --brand-purple: #6D28D9;
+    --brand-purple-dark: #5B21B6;
+    --page-bg: #F7F7FB;
+    --muted-text: #8A8FA3;
+    --pill-bg: #EFEFF5;
+    --pill-text: #6B7086;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--page-bg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  /* Accessible focus ring for keyboard users, invisible for mouse clicks */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--brand-purple);
+    outline-offset: 2px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--brand-purple);
+    color: #fff;
+    padding: 0.6rem 1rem;
+    border-radius: 0 0 8px 0;
+    z-index: 2000;
+  }
+
+  .skip-link:focus {
+    left: 0;
+  }
+
+  .topbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #ECECF3;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+  }
+
+  .brand-icon {
+    width: 48px;
+    height: 48px;
+    background-color: var(--brand-purple);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .brand-title {
+    font-weight: 700;
+    font-size: clamp(1rem, 3vw, 1.15rem);
+    color: #1A1A2E;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+
+  .brand-subtitle {
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
+    color: var(--muted-text);
+    margin-bottom: 0;
+  }
+
+  .listing-tally {
+    font-size: 0.78rem;
+    color: var(--muted-text);
+    white-space: nowrap;
+  }
+
+  .listing-tally strong {
+    color: #1A1A2E;
+  }
+
+  .search-wrapper {
+    position: relative;
+  }
+
+  .search-input {
+    background-color: var(--pill-bg);
+    border: none;
+    border-radius: 14px;
+    padding: 0.9rem 2.75rem 0.9rem 3rem;
+    font-size: 0.95rem;
+    color: #4A4E5C;
+    width: 100%;
+  }
+
+  .search-input:focus {
+    background-color: var(--pill-bg);
+    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.15);
+    outline: none;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #A0A4B8;
+    font-size: 1.05rem;
+    pointer-events: none;
+  }
+
+  .search-clear {
+    position: absolute;
+    right: 0.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: #E1E1EC;
+    color: #6B7086;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    line-height: 1;
+    padding: 0;
+  }
+
+  .search-clear.visible {
+    display: flex;
+  }
+
+  .search-clear:hover {
+    background: #D3D3E2;
+  }
+
+  .filter-pill {
+    border: none;
+    border-radius: 999px;
+    padding: 0.55rem 1.1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .filter-pill.active {
+    background-color: var(--brand-purple);
+    color: #fff;
+  }
+
+  .filter-pill:not(.active) {
+    background-color: var(--pill-bg);
+    color: var(--pill-text);
+  }
+
+  .filter-pill:not(.active):hover {
+    background-color: #E4E4EE;
+    color: var(--pill-text);
+  }
+
+  /* Popular search suggestion chips */
+  .suggestion-chip {
+    border: 1px solid #E4E4EE;
+    background-color: #fff;
+    color: #4A4E5C;
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+
+  .suggestion-chip:hover {
+    background-color: var(--pill-bg);
+    border-color: var(--pill-bg);
+  }
+
+  .content-area {
+    min-height: 60vh;
+  }
+
+  /* ---------- Results toolbar ---------- */
+
+  .results-container {
+    max-width: 1100px;
+  }
+
+  .results-count {
+    font-size: 0.85rem;
+    color: var(--muted-text);
+    font-weight: 600;
+  }
+
+  .sort-select {
+    background-color: #ffffff;
+    border: 1px solid #E4E4EE;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    color: #4A4E5C;
+    padding: 0.4rem 1.8rem 0.4rem 0.7rem;
+    font-weight: 600;
+  }
+
+  /* ---------- Cards ---------- */
+
+  .place-card {
+    background-color: #ffffff;
+    border: 1px solid #ECECF3;
+    border-radius: 16px;
+    padding: 1.1rem;
+    height: 100%;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+    animation: fadeInUp 0.25s ease both;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .place-card { animation: none; }
+  }
+
+  .place-card:hover {
+    box-shadow: 0 8px 24px rgba(24, 16, 56, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .place-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .place-icon.shop {
+    background-color: #6D28D9;
+  }
+
+  .place-icon.service {
+    background-color: #0EA5A0;
+  }
+
+  .place-type-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .place-type-badge.shop {
+    background-color: #F0E7FE;
+    color: #6D28D9;
+  }
+
+  .place-type-badge.service {
+    background-color: #E1F7F5;
+    color: #0EA5A0;
+  }
+
+  .place-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #1A1A2E;
+    margin-bottom: 0.15rem;
+  }
+
+  .place-category {
+    font-size: 0.85rem;
+    color: var(--muted-text);
+    margin-bottom: 0.5rem;
+  }
+
+  .place-meta {
+    font-size: 0.82rem;
+    color: #6B7086;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .place-hours {
+    font-size: 0.78rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.3rem;
+  }
+
+  .place-hours.open {
+    color: #12875A;
+  }
+
+  .place-hours.closed {
+    color: #C0392B;
+  }
+
+  .place-rating {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #1A1A2E;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex-shrink: 0;
+  }
+
+  .place-rating i {
+    color: #F5A623;
+  }
+
+  .place-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .place-action-btn {
+    flex: 1;
+    text-align: center;
+    border-radius: 10px;
+    padding: 0.45rem 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    border: 1px solid transparent;
+  }
+
+  .place-action-btn.call {
+    background-color: var(--brand-purple);
+    color: #fff;
+  }
+
+  .place-action-btn.call:hover {
+    background-color: var(--brand-purple-dark);
+    color: #fff;
+  }
+
+  .place-action-btn.directions {
+    background-color: #fff;
+    color: #4A4E5C;
+    border-color: #E4E4EE;
+  }
+
+  .place-action-btn.directions:hover {
+    background-color: var(--pill-bg);
+    color: #4A4E5C;
+  }
+
+  mark.search-highlight {
+    background-color: #FDE68A;
+    color: inherit;
+    padding: 0 2px;
+    border-radius: 3px;
+  }
+
+  .empty-state {
+    text-align: center;
+    color: var(--muted-text);
+    padding: 3rem 1rem;
+  }
+
+  .empty-state i {
+    font-size: 2.5rem;
+    color: #D8D8E6;
+  }
+
+  /* ---------- Responsive adjustments ---------- */
+
+  /* Tablets and small laptops */
+  @media (max-width: 768px) {
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      font-size: 1.1rem;
+      border-radius: 12px;
+    }
+
+    .search-input {
+      padding: 0.8rem 2.5rem 0.8rem 2.75rem;
+      font-size: 0.9rem;
+    }
+
+    .listing-tally {
+      display: none;
+    }
+  }
+
+  /* Phones */
+  @media (max-width: 576px) {
+    .topbar {
+      padding-top: 0.85rem !important;
+      padding-bottom: 0.85rem !important;
+    }
+
+    .topbar .container-fluid {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      font-size: 1rem;
+      border-radius: 10px;
+    }
+
+    .search-wrapper {
+      margin-top: 0.9rem !important;
+    }
+
+    .search-input {
+      padding: 0.75rem 2.4rem 0.75rem 2.6rem;
+      font-size: 0.85rem;
+      border-radius: 12px;
+    }
+
+    .search-icon {
+      left: 0.85rem;
+      font-size: 0.95rem;
+    }
+
+    /* Filter pills scroll horizontally instead of wrapping/shrinking */
+    .filter-row {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      margin-top: 0.75rem !important;
+    }
+
+    .filter-row::-webkit-scrollbar,
+    .suggestion-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .suggestion-row {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .filter-pill {
+      padding: 0.5rem 0.9rem;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .suggestion-chip {
+      flex-shrink: 0;
+    }
+
+    .results-toolbar {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 0.5rem;
+    }
+
+    .sort-select {
+      width: 100%;
+    }
+
+    .place-card {
+      padding: 0.9rem;
+    }
+
+    .place-actions {
+      flex-direction: column;
+    }
+  }
+
+  /* Very small phones */
+  @media (max-width: 360px) {
+    .brand-subtitle {
+      display: none;
+    }
+
+    .brand-title {
+      line-height: 1;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <a href="#mainContent" class="skip-link">Skip to results</a>
+
+  <header class="topbar py-3">
+    <div class="container-fluid px-4">
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+
+        <!-- Logo + Title -->
+        <div class="d-flex align-items-center gap-2 gap-sm-3">
+          <div class="brand-icon">
+            <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+          </div>
+          <div>
+            <p class="brand-title">Uitenhage</p>
+            <p class="brand-subtitle">Find local shops & services</p>
+          </div>
+        </div>
+
+        <!-- Listing tally, replaces the old Add place button -->
+        <p class="listing-tally mb-0" id="listingTally"></p>
+
+      </div>
+
+      <!-- Search bar -->
+      <div class="search-wrapper mt-3 mt-sm-4">
+        <i class="bi bi-search search-icon" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control search-input"
+          id="searchInput"
+          placeholder="Search shops, services, products..."
+          aria-label="Search shops, services and products in Uitenhage"
+          autocomplete="off"
+        >
+        <button class="search-clear" id="searchClear" type="button" aria-label="Clear search">
+          <i class="bi bi-x-lg" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- Filter pills -->
+      <div class="d-flex gap-2 mt-3 filter-row" role="group" aria-label="Filter by category">
+        <button class="filter-pill active" data-filter="all" aria-pressed="true">
+          <i class="bi bi-grid-fill" aria-hidden="true"></i> All
+        </button>
+        <button class="filter-pill" data-filter="shop" aria-pressed="false">
+          <i class="bi bi-shop" aria-hidden="true"></i> Shops
+        </button>
+        <button class="filter-pill" data-filter="service" aria-pressed="false">
+          <i class="bi bi-tools" aria-hidden="true"></i> Services
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="content-area py-4" id="mainContent">
+    <div class="container-fluid px-4">
+      <div class="results-container mx-auto">
+
+        <div class="d-flex justify-content-between align-items-center results-toolbar mb-3">
+          <p class="results-count mb-0" id="resultsCount" role="status" aria-live="polite">
+            Search for a shop or service to see results
+          </p>
+          <select class="sort-select" id="sortSelect" aria-label="Sort results">
+            <option value="rating">Sort: Top rated</option>
+            <option value="name">Sort: Name A-Z</option>
+          </select>
+        </div>
+
+        <div class="row g-3" id="resultsGrid">
+          <!-- Cards are injected here by JS -->
+        </div>
+
+        <div class="empty-state d-none" id="emptyState">
+          <i class="bi bi-search d-block mb-2" aria-hidden="true"></i>
+          <p class="mb-0 fw-semibold">No results found</p>
+          <p class="mb-2 small">Try a different search term or filter</p>
+          <div class="d-flex flex-wrap justify-content-center gap-2 suggestion-row" id="emptySuggestions"></div>
+        </div>
+
+        <div class="empty-state" id="startState">
+          <i class="bi bi-geo-alt d-block mb-2" aria-hidden="true"></i>
+          <p class="mb-0 fw-semibold">Search for a shop or service in Uitenhage</p>
+          <p class="mb-3 small">Or try one of these popular searches</p>
+          <div class="d-flex flex-wrap justify-content-center gap-2 suggestion-row" id="startSuggestions"></div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // =========================================================================
+    // ADD SEARCH TAGS HERE
+    // Every place below has a "tags" array. Add any extra words you want that
+    // place to be found by (e.g. brand names, products, synonyms, misspellings).
+    // The search box matches against: place name + category + every tag.
+    // Example: tags: ["plumber", "geyser", "burst pipe", "emergency"]
+    // =========================================================================
+    const places = [
+      {
+        name: "Kariega Fresh Market",
+        category: "Grocery & Fresh Produce",
+        type: "shop",
+        icon: "bi-basket3-fill",
+        rating: 4.6,
+        reviews: 128,
+        address: "12 Caledon St, Uitenhage",
+        phone: "+27415551201",
+        phoneDisplay: "041 555 1201",
+        hours: "Open until 7:00 PM",
+        isOpen: true,
+        tags: ["grocery", "fruit", "vegetables", "market", "food"]
+      },
+      {
+        name: "Baines Fashion Boutique",
+        category: "Clothing & Accessories",
+        type: "shop",
+        icon: "bi-bag-fill",
+        rating: 4.8,
+        reviews: 76,
+        address: "45 Baird St, Uitenhage",
+        phone: "+27415551242",
+        phoneDisplay: "041 555 1242",
+        hours: "Open until 5:00 PM",
+        isOpen: true,
+        tags: ["clothing", "fashion", "boutique", "accessories", "shoes"]
+      },
+      {
+        name: "Uitenhage Hardware & Tools",
+        category: "Hardware & Building Supplies",
+        type: "shop",
+        icon: "bi-tools",
+        rating: 4.5,
+        reviews: 94,
+        address: "8 Church St, Uitenhage",
+        phone: "+27415551278",
+        phoneDisplay: "041 555 1278",
+        hours: "Closed - opens 8:00 AM Mon",
+        isOpen: false,
+        tags: ["hardware", "tools", "building", "paint", "diy"]
+      },
+      {
+        name: "Speedy Auto Repairs",
+        category: "Mechanic & Auto Service",
+        type: "service",
+        icon: "bi-wrench-adjustable-circle-fill",
+        rating: 4.7,
+        reviews: 152,
+        address: "23 Durban St, Uitenhage",
+        phone: "+27415551309",
+        phoneDisplay: "041 555 1309",
+        hours: "Open until 6:00 PM",
+        isOpen: true,
+        tags: ["mechanic", "car", "auto", "repair", "tyres"]
+      },
+      {
+        name: "Bright Smile Dental Care",
+        category: "Dentist & Oral Health",
+        type: "service",
+        icon: "bi-heart-pulse-fill",
+        rating: 4.9,
+        reviews: 61,
+        address: "5 Cannon St, Uitenhage",
+        phone: "+27415551355",
+        phoneDisplay: "041 555 1355",
+        hours: "Closed - opens 8:30 AM Mon",
+        isOpen: false,
+        tags: ["dentist", "dental", "health", "clinic", "teeth"]
+      },
+      {
+        name: "QuickFix Plumbing Services",
+        category: "Plumber & Home Repairs",
+        type: "service",
+        icon: "bi-droplet-fill",
+        rating: 4.4,
+        reviews: 43,
+        address: "19 Jansen St, Uitenhage",
+        phone: "+27415551387",
+        phoneDisplay: "041 555 1387",
+        hours: "Open 24 hours",
+        isOpen: true,
+        tags: ["plumber", "plumbing", "leaks", "geyser", "home repair"]
+      }
+    ];
+
+    // Popular search suggestions shown as tappable chips
+    const popularSearches = ["mechanic", "grocery", "dentist", "clothing", "plumber", "hardware"];
+
+    let activeFilter = "all";
+    let searchTerm = "";
+    let sortBy = "rating";
+
+    const resultsGrid = document.getElementById("resultsGrid");
+    const resultsCount = document.getElementById("resultsCount");
+    const emptyState = document.getElementById("emptyState");
+    const startState = document.getElementById("startState");
+    const searchInput = document.getElementById("searchInput");
+    const searchClear = document.getElementById("searchClear");
+    const sortSelect = document.getElementById("sortSelect");
+    const filterButtons = document.querySelectorAll(".filter-pill");
+    const listingTally = document.getElementById("listingTally");
+    const startSuggestions = document.getElementById("startSuggestions");
+    const emptySuggestions = document.getElementById("emptySuggestions");
+
+    // Set the header tally, e.g. "6 places · 3 shops · 3 services"
+    function initTally() {
+      const shopCount = places.filter(p => p.type === "shop").length;
+      const serviceCount = places.filter(p => p.type === "service").length;
+      listingTally.innerHTML = `<strong>${places.length}</strong> places listed · <strong>${shopCount}</strong> shops · <strong>${serviceCount}</strong> services`;
+    }
+
+    function buildSuggestionChips(container) {
+      container.innerHTML = popularSearches
+        .map(term => `<button type="button" class="suggestion-chip" data-term="${term}">${term}</button>`)
+        .join("");
+
+      container.querySelectorAll(".suggestion-chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          searchInput.value = chip.dataset.term;
+          searchTerm = chip.dataset.term;
+          toggleClearButton();
+          render();
+          searchInput.focus();
+        });
+      });
+    }
+
+    function escapeRegExp(str) {
+      return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    function highlight(text, term) {
+      if (!term) return text;
+      const re = new RegExp(`(${escapeRegExp(term)})`, "ig");
+      return text.replace(re, "<mark class=\"search-highlight\">$1</mark>");
+    }
+
+    function createCard(place) {
+      const typeLabel = place.type === "shop" ? "Shop" : "Service";
+      const hoursClass = place.isOpen ? "open" : "closed";
+      const hoursIcon = place.isOpen ? "bi-clock-fill" : "bi-clock";
+      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name + " " + place.address)}`;
+
+      return `
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="place-card d-flex gap-3">
+            <div class="place-icon ${place.type}">
+              <i class="bi ${place.icon}" aria-hidden="true"></i>
+            </div>
+            <div class="flex-grow-1">
+              <div class="d-flex justify-content-between align-items-start gap-2">
+                <p class="place-name">${highlight(place.name, searchTerm)}</p>
+                <span class="place-type-badge ${place.type}">${typeLabel}</span>
+              </div>
+              <p class="place-category">${highlight(place.category, searchTerm)}</p>
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div class="place-meta">
+                  <i class="bi bi-geo-alt" aria-hidden="true"></i> ${place.address}
+                </div>
+                <div class="place-rating">
+                  <i class="bi bi-star-fill" aria-hidden="true"></i> ${place.rating}
+                  <span class="text-muted fw-normal">(${place.reviews})</span>
+                </div>
+              </div>
+              <p class="place-hours ${hoursClass}">
+                <i class="bi ${hoursIcon}" aria-hidden="true"></i> ${place.hours}
+              </p>
+              <div class="place-actions">
+                <a class="place-action-btn call" href="tel:${place.phone}">
+                  <i class="bi bi-telephone-fill" aria-hidden="true"></i> Call
+                </a>
+                <a class="place-action-btn directions" href="${mapsUrl}" target="_blank" rel="noopener">
+                  <i class="bi bi-signpost-2-fill" aria-hidden="true"></i> Directions
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function matchesSearch(place, term) {
+      if (!term) return true;
+      const haystack = [place.name, place.category, ...place.tags]
+        .join(" ")
+        .toLowerCase();
+      return haystack.includes(term.toLowerCase());
+    }
+
+    function sortPlaces(list) {
+      const sorted = [...list];
+      if (sortBy === "rating") {
+        sorted.sort((a, b) => b.rating - a.rating);
+      } else {
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
+      }
+      return sorted;
+    }
+
+    function toggleClearButton() {
+      searchClear.classList.toggle("visible", searchTerm.length > 0);
+    }
+
+    function render() {
+      const hasQuery = searchTerm.length > 0;
+      const hasCategory = activeFilter !== "all";
+
+      // Nothing to show yet: no search typed AND no category chosen.
+      if (!hasQuery && !hasCategory) {
+        resultsGrid.innerHTML = "";
+        emptyState.classList.add("d-none");
+        startState.classList.remove("d-none");
+        resultsCount.textContent = "Search for a shop or service to see results";
+        return;
+      }
+
+      startState.classList.add("d-none");
+
+      let filtered = places.filter(place => {
+        const typeMatch = activeFilter === "all" || place.type === activeFilter;
+        return typeMatch && matchesSearch(place, searchTerm);
+      });
+
+      filtered = sortPlaces(filtered);
+
+      if (filtered.length === 0) {
+        resultsGrid.innerHTML = "";
+        emptyState.classList.remove("d-none");
+      } else {
+        emptyState.classList.add("d-none");
+        resultsGrid.innerHTML = filtered.map(createCard).join("");
+      }
+
+      const noun = activeFilter === "shop" ? "shop" : activeFilter === "service" ? "service" : "result";
+      const plural = filtered.length === 1 ? noun : noun + "s";
+      resultsCount.textContent = `${filtered.length} ${plural} found in Uitenhage`;
+    }
+
+    searchInput.addEventListener("input", (e) => {
+      searchTerm = e.target.value.trim();
+      toggleClearButton();
+      render();
+    });
+
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        searchInput.value = "";
+        searchTerm = "";
+        toggleClearButton();
+        render();
+      }
+    });
+
+    searchClear.addEventListener("click", () => {
+      searchInput.value = "";
+      searchTerm = "";
+      toggleClearButton();
+      render();
+      searchInput.focus();
+    });
+
+    sortSelect.addEventListener("change", (e) => {
+      sortBy = e.target.value;
+      render();
+    });
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterButtons.forEach(b => {
+          b.classList.remove("active");
+          b.setAttribute("aria-pressed", "false");
+        });
+        btn.classList.add("active");
+        btn.setAttribute("aria-pressed", "true");
+        activeFilter = btn.dataset.filter;
+        render();
+      });
+    });
+
+    // Initial setup
+    initTally();
+    buildSuggestionChips(startSuggestions);
+    buildSuggestionChips(emptySuggestions);
+    render();
+  </script>
+
+</body>
+</html>
