@@ -1,12 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#6D28D9">
-<title>Shops and Services</title>
+
+<!-- ============ PRIMARY SEO ============ -->
+<title>Shops and Services| Find Local Businesses</title>
+<meta name="description" content="Browse a free local directory of shops and services in Uitenhage (Kariega), Eastern Cape. Find hardware stores, home improvement centres, locksmiths and more — with addresses, phone numbers, hours, ratings and directions.">
+<meta name="keywords" content="Uitenhage shops, Kariega businesses, Uitenhage services, Eastern Cape hardware stores, Kariega directory, local businesses Uitenhage">
+<meta name="author" content="Uitenhage & Kariega Directory">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="googlebot" content="index, follow">
+
+<!-- ============ OPEN GRAPH (Facebook / WhatsApp / LinkedIn) ============ -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Uitenhage & Kariega Directory">
+<meta property="og:title" content="Uitenhage & Kariega Shops and Services Directory">
+<meta property="og:description" content="Find local shops and services in Uitenhage (Kariega), Eastern Cape — addresses, phone numbers, hours, ratings and directions in one place.">
+<meta property="og:url" content="https://www.YOURDOMAIN.co.za/">
+<meta property="og:image" content="https://www.YOURDOMAIN.co.za/images/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_ZA">
+
+<!-- ============ TWITTER / X CARD ============ -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Uitenhage & Kariega Shops and Services Directory">
+<meta name="twitter:description" content="Find local shops and services in Uitenhage (Kariega), Eastern Cape — addresses, phone numbers, hours, ratings and directions in one place.">
+<meta name="twitter:image" content="https://www.YOURDOMAIN.co.za/images/og-cover.jpg">
+
+<!-- ============ GEO / LOCAL SEO ============ -->
+<meta name="geo.region" content="ZA-EC">
+<meta name="geo.placename" content="Uitenhage, Kariega, Eastern Cape">
+
+<!-- ============ FAVICON / ICONS ============ -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+
+<!-- ============ PERFORMANCE ============ -->
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+
+<!-- ============ GOOGLE ANALYTICS (GA4) ============ -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2X49WWFVM1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2X49WWFVM1');
+</script>
+
+<!-- ============ GOOGLE ADSENSE ============ -->
+<!-- Replace ca-pub-XXXXXXXXXXXXXXXX with your AdSense publisher ID once approved -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+<!-- ============ STRUCTURED DATA (JSON-LD) ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Uitenhage & Kariega Directory",
+  "url": "https://www.YOURDOMAIN.co.za/",
+  "description": "A local directory of shops and services in Uitenhage (Kariega), Eastern Cape, South Africa.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.YOURDOMAIN.co.za/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.YOURDOMAIN.co.za/" },
+    { "@type": "ListItem", "position": 2, "name": "Shops & Services", "item": "https://www.YOURDOMAIN.co.za/#mainContent" }
+  ]
+}
+</script>
+<script type="application/ld+json" id="placesJsonLd">
+{}
+</script>
+
 <style>
   :root {
     --brand-purple: #6D28D9;
@@ -30,7 +113,8 @@
   a:focus-visible,
   button:focus-visible,
   input:focus-visible,
-  select:focus-visible {
+  select:focus-visible,
+  [tabindex]:focus-visible {
     outline: 2px solid var(--brand-purple);
     outline-offset: 2px;
   }
@@ -230,6 +314,7 @@
     height: 100%;
     transition: box-shadow 0.15s ease, transform 0.15s ease;
     animation: fadeInUp 0.25s ease both;
+    cursor: pointer;
   }
 
   @keyframes fadeInUp {
@@ -244,6 +329,51 @@
   .place-card:hover {
     box-shadow: 0 8px 24px rgba(24, 16, 56, 0.08);
     transform: translateY(-2px);
+  }
+
+  .place-card:focus-visible {
+    box-shadow: 0 8px 24px rgba(24, 16, 56, 0.08);
+  }
+
+  /* Thumbnail strip that opens the gallery */
+  .place-thumb-strip {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 4px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 0.85rem;
+    height: 130px;
+  }
+
+  .place-thumb-strip .thumb-main {
+    grid-row: 1 / 3;
+    height: 100%;
+  }
+
+  .place-thumb-strip .thumb-sub {
+    height: 63px;
+    position: relative;
+  }
+
+  .place-thumb-strip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background-color: #EFEFF5;
+  }
+
+  .thumb-more-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 26, 46, 0.55);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
   }
 
   .place-icon {
@@ -379,6 +509,20 @@
     color: #4A4E5C;
   }
 
+  .place-action-btn.gallery-btn {
+    background-color: #fff;
+    color: #4A4E5C;
+    border-color: #E4E4EE;
+    flex: 0 0 auto;
+    width: 40px;
+    padding: 0.45rem;
+  }
+
+  .place-action-btn.gallery-btn:hover {
+    background-color: var(--pill-bg);
+    color: #4A4E5C;
+  }
+
   mark.search-highlight {
     background-color: #FDE68A;
     color: inherit;
@@ -395,6 +539,155 @@
   .empty-state i {
     font-size: 2.5rem;
     color: #D8D8E6;
+  }
+
+  /* ---------- Gallery modal ---------- */
+
+  .gallery-modal .modal-content {
+    border-radius: 18px;
+    border: none;
+    overflow: hidden;
+  }
+
+  .gallery-modal .modal-header {
+    border-bottom: 1px solid #ECECF3;
+    padding: 1rem 1.25rem;
+    align-items: flex-start;
+  }
+
+  .gallery-modal .modal-body {
+    padding: 0;
+  }
+
+  .gallery-header-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .gallery-header-icon.shop { background-color: #6D28D9; }
+  .gallery-header-icon.service { background-color: #0EA5A0; }
+
+  .gallery-modal-title {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #1A1A2E;
+    margin-bottom: 0.1rem;
+  }
+
+  .gallery-modal-subtitle {
+    font-size: 0.82rem;
+    color: var(--muted-text);
+  }
+
+  /* Carousel */
+  .gallery-carousel {
+    background-color: #14121C;
+  }
+
+  .gallery-carousel .carousel-inner {
+    aspect-ratio: 16 / 10;
+  }
+
+  .gallery-carousel .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .gallery-carousel .carousel-control-prev,
+  .gallery-carousel .carousel-control-next {
+    width: 3rem;
+  }
+
+  .gallery-carousel .carousel-control-prev-icon,
+  .gallery-carousel .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.35);
+    border-radius: 50%;
+    padding: 1.1rem;
+    background-size: 55%;
+  }
+
+  .gallery-counter {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.85rem;
+    background: rgba(20, 18, 28, 0.65);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    z-index: 5;
+  }
+
+  /* Thumbnail rail under the carousel */
+  .gallery-thumb-rail {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    overflow-x: auto;
+    background-color: #fff;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .gallery-thumb-rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery-thumb-rail button {
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 0;
+    flex: 0 0 auto;
+    width: 68px;
+    height: 52px;
+    overflow: hidden;
+    background: none;
+  }
+
+  .gallery-thumb-rail button.active {
+    border-color: var(--brand-purple);
+  }
+
+  .gallery-thumb-rail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .gallery-info-body {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+
+  .gallery-info-row {
+    font-size: 0.85rem;
+    color: #4A4E5C;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .gallery-info-row i {
+    color: var(--brand-purple);
+    width: 1.1rem;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .gallery-modal .modal-footer {
+    border-top: 1px solid #ECECF3;
+    padding: 1rem 1.25rem;
+    gap: 0.6rem;
   }
 
   /* ---------- Responsive adjustments ---------- */
@@ -500,6 +793,27 @@
     .place-actions {
       flex-direction: column;
     }
+
+    .place-action-btn.gallery-btn {
+      width: 100%;
+    }
+
+    .place-thumb-strip {
+      height: 150px;
+    }
+
+    .gallery-carousel .carousel-inner {
+      aspect-ratio: 4 / 3;
+    }
+
+    .gallery-modal .modal-footer {
+      flex-direction: column;
+    }
+
+    .gallery-modal .modal-footer > * {
+      width: 100%;
+      margin: 0 !important;
+    }
   }
 
   /* Very small phones */
@@ -511,24 +825,183 @@
     .brand-title {
       line-height: 1;
     }
+
+    .place-thumb-strip {
+      height: 120px;
+    }
+  }
+
+  .breadcrumb {
+    padding: 0;
+    margin-bottom: 0.35rem;
+    background: transparent;
+  }
+
+  .breadcrumb-item + .breadcrumb-item::before {
+    color: #C9CADA;
+  }
+
+  .intro-section {
+    max-width: 1100px;
+  }
+
+  .intro-section h2 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1A1A2E;
+  }
+
+  .intro-section p {
+    font-size: 0.9rem;
+    color: #6B7086;
+    line-height: 1.6;
+  }
+
+  .ad-slot {
+    max-width: 1100px;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: repeating-linear-gradient(45deg, #F0F0F7, #F0F0F7 10px, #E9E9F3 10px, #E9E9F3 20px);
+    border: 1px dashed #D3D3E2;
+    border-radius: 12px;
+    color: #A0A4B8;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .site-footer {
+    background-color: #ffffff;
+    border-top: 1px solid #ECECF3;
+    margin-top: 3rem;
+    padding: 2.5rem 0 1.5rem;
+    font-size: 0.85rem;
+    color: var(--muted-text);
+  }
+
+  .site-footer h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1A1A2E;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.85rem;
+  }
+
+  .site-footer a {
+    color: var(--muted-text);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .site-footer a:hover {
+    color: var(--brand-purple);
+    text-decoration: underline;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid #ECECF3;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    font-size: 0.78rem;
+  }
+
+  .social-icons a {
+    display: inline-flex;
+    width: 34px;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
+    background: var(--pill-bg);
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    color: #6B7086 !important;
+  }
+
+  .social-icons a:hover {
+    background: var(--brand-purple);
+    color: #fff !important;
+  }
+
+  /* Cookie consent banner */
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2050;
+    background: #1A1A2E;
+    color: #E7E7F1;
+    padding: 1rem 1.25rem;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    box-shadow: 0 -6px 24px rgba(0,0,0,0.15);
+  }
+
+  .cookie-banner a {
+    color: #C9B8FA;
+  }
+
+  .cookie-banner .btn {
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+  }
+
+  /* Fullscreen-feeling modal on small screens */
+  @media (max-width: 575.98px) {
+    .gallery-modal .modal-dialog {
+      margin: 0;
+      max-width: 100%;
+      min-height: 100%;
+    }
+
+    .gallery-modal .modal-content {
+      min-height: 100vh;
+      border-radius: 0;
+    }
   }
 </style>
 </head>
 <body>
+  <!--     1) To do: Fix domain!!!      -->
+
+  <noscript>
+    <div style="max-width:700px;margin:2rem auto;padding:1.5rem;font-family:sans-serif;text-align:center;">
+      <h1>Uitenhage & Kariega Shops and Services Directory</h1>
+      <p>This directory needs JavaScript enabled to display listings. Please enable JavaScript in your browser, or
+      <a href="mailto:info@YOURDOMAIN.co.za">contact us</a> for a list of shops and services in Uitenhage and Kariega.</p>
+    </div>
+  </noscript>
 
   <a href="#mainContent" class="skip-link">Skip to results</a>
 
+  
+
   <header class="topbar py-3">
     <div class="container-fluid px-4">
+      <nav aria-label="Breadcrumb" class="mb-1">
+        <ol class="breadcrumb mb-0" style="font-size:0.75rem;">
+          <li class="breadcrumb-item"><a href="/" style="color:var(--muted-text);text-decoration:none;">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page" style="color:var(--muted-text);">Shops & Services</li>
+        </ol>
+      </nav>
       <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
 
         <!-- Logo + Title -->
         <div class="d-flex align-items-center gap-2 gap-sm-3">
           <div class="brand-icon">
-            <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+            <img src="assets/purple-emb.png" style="width:50px">
           </div>
           <div>
-            <p class="brand-title">Uitenhage</p>
+            <h1 class="brand-title">Uitenhage</h1>
             <p class="brand-subtitle">Find local shops & services</p>
           </div>
         </div>
@@ -571,11 +1044,39 @@
 
   <main class="content-area py-4" id="mainContent">
     <div class="container-fluid px-4">
+
+      <!-- On-page SEO content: real, crawlable text describing the directory -->
+      <section class="intro-section mx-auto mb-4">
+        <h2>Local Shops & Services in Uitenhage and Kariega</h2>
+        <p>
+          This free directory lists hardware stores, home improvement centres, locksmiths and other
+          local businesses in Uitenhage (Kariega), Eastern Cape. Every listing includes an address,
+          phone number, opening hours, customer rating and directions, so you can find what you need
+          nearby without digging through search results. Use the search bar or category filters below
+          to browse shops and services, or scroll down to see everything on offer.
+        </p>
+      </section>
+
+      <!-- AdSense unit — currently showing a placeholder box. Once your AdSense account is approved, delete the placeholder div below and uncomment the <ins> block,
+           replacing ca-pub-XXXXXXXXXXXXXXXX and the data-ad-slot value with your own. -->
+      <div class="ad-slot mx-auto mb-4" aria-hidden="true">Ad space</div>
+      <!--
+      <ins class="adsbygoogle mx-auto d-block mb-4"
+           style="max-width:1100px"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="0000000000"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+
       <div class="results-container mx-auto">
+
+        <h2 class="visually-hidden">All Shops & Services in Uitenhage and Kariega</h2>
 
         <div class="d-flex justify-content-between align-items-center results-toolbar mb-3">
           <p class="results-count mb-0" id="resultsCount" role="status" aria-live="polite">
-            Search for a shop or service to see results
+            Loading local listings…
           </p>
           <select class="sort-select" id="sortSelect" aria-label="Sort results">
             <option value="rating">Sort: Top rated</option>
@@ -594,114 +1095,591 @@
           <div class="d-flex flex-wrap justify-content-center gap-2 suggestion-row" id="emptySuggestions"></div>
         </div>
 
-        <div class="empty-state" id="startState">
-          <i class="bi bi-geo-alt d-block mb-2" aria-hidden="true"></i>
-          <p class="mb-0 fw-semibold">Search for a shop or service in Uitenhage</p>
-          <p class="mb-3 small">Or try one of these popular searches</p>
-          <div class="d-flex flex-wrap justify-content-center gap-2 suggestion-row" id="startSuggestions"></div>
+        <div class="d-none" id="startState">
+          <p class="mb-2 small text-muted">Popular searches:</p>
+          <div class="d-flex flex-wrap gap-2 suggestion-row mb-4" id="startSuggestions"></div>
         </div>
 
       </div>
+
+      <!-- AdSense unit — see note above for activation instructions. -->
+      <div class="ad-slot mx-auto mt-4" aria-hidden="true">Ad space</div>
+      <!--
+      <ins class="adsbygoogle mx-auto d-block mt-4"
+           style="max-width:1100px"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="0000000000"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
     </div>
   </main>
 
+  <!-- Cookie consent banner (POPIA/GDPR-friendly, required before loading ad/analytics cookies in some regions) -->
+  <div class="cookie-banner d-none" id="cookieBanner" role="dialog" aria-label="Cookie consent">
+    <span>
+      We use cookies for analytics and to show relevant ads. See our
+      <a href="/privacy-policy.html">Privacy Policy</a> for details.
+    </span>
+    <div class="d-flex gap-2">
+      <button type="button" class="btn btn-sm btn-outline-light" id="cookieDecline">Decline</button>
+      <button type="button" class="btn btn-sm btn-light" id="cookieAccept" style="background-color:var(--brand-purple);color:#fff;border-color:var(--brand-purple);">Accept</button>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container-fluid px-4">
+      <div class="row g-4">
+        <div class="col-6 col-md-3">
+          <h3>Directory</h3>
+          <a href="/#mainContent">All Listings</a>
+          <a href="/?filter=shop">Shops</a>
+          <a href="/?filter=service">Services</a>
+          <a href="/sitemap.xml">Sitemap</a>
+        </div>
+        <div class="col-6 col-md-3">
+          <h3>Company</h3>
+          <a href="/about.html">About Us</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/add-listing.html">Add Your Business</a>
+        </div>
+        <div class="col-6 col-md-3">
+          <h3>Legal</h3>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-service.html">Terms of Service</a>
+          <a href="/cookie-policy.html">Cookie Policy</a>
+        </div>
+        <div class="col-6 col-md-3">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="X (Twitter)"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom d-flex flex-wrap justify-content-between gap-2">
+        <span>&copy; <span id="footerYear"></span> Uitenhage & Kariega Directory. All rights reserved.</span>
+        <span>Made for the Uitenhage & Kariega community, Eastern Cape, South Africa.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Gallery / details modal -->
+  <div class="modal fade gallery-modal" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="d-flex align-items-center gap-3">
+            <div class="gallery-header-icon" id="galleryHeaderIcon">
+              <i class="bi" id="galleryHeaderIconGlyph" aria-hidden="true"></i>
+            </div>
+            <div>
+              <p class="gallery-modal-title mb-0" id="galleryModalLabel"></p>
+              <p class="gallery-modal-subtitle mb-0" id="galleryModalSubtitle"></p>
+            </div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close gallery"></button>
+        </div>
+
+        <div class="modal-body">
+          <!-- Photo carousel -->
+          <div id="galleryCarousel" class="carousel slide gallery-carousel" data-bs-ride="false">
+            <div class="carousel-inner" id="galleryCarouselInner">
+              <!-- Slides injected by JS -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous photo</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next photo</span>
+            </button>
+            <span class="gallery-counter" id="galleryCounter" aria-hidden="true"></span>
+          </div>
+
+          <!-- Thumbnail rail -->
+          <div class="gallery-thumb-rail" id="galleryThumbRail" role="tablist" aria-label="Photo thumbnails"></div>
+
+          <!-- Place details -->
+          <div class="gallery-info-body">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-2">
+              <span class="place-type-badge" id="galleryTypeBadge"></span>
+              <div class="place-rating" id="galleryRating">
+                <i class="bi bi-star-fill" aria-hidden="true"></i>
+              </div>
+            </div>
+            <p class="gallery-info-row mb-2"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i> <span id="galleryAddress"></span></p>
+            <p class="gallery-info-row mb-0" id="galleryHoursRow"><i class="bi bi-clock-fill" aria-hidden="true"></i> <span id="galleryHours"></span></p>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <a class="place-action-btn call flex-fill" id="galleryCallBtn" href="#">
+            <i class="bi bi-telephone-fill" aria-hidden="true"></i> Call
+          </a>
+          <a class="place-action-btn directions flex-fill" id="galleryDirectionsBtn" href="#" target="_blank" rel="noopener">
+            <i class="bi bi-signpost-2-fill" id="galleryDirectionsIcon" aria-hidden="true"></i> <span id="galleryDirectionsLabel">Directions</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
   <script>
-    // =========================================================================
-    // ADD SEARCH TAGS HERE
-    // Every place below has a "tags" array. Add any extra words you want that
-    // place to be found by (e.g. brand names, products, synonyms, misspellings).
-    // The search box matches against: place name + category + every tag.
-    // Example: tags: ["plumber", "geyser", "burst pipe", "emergency"]
-    // =========================================================================
-    const places = [
-      {
-        name: "Kariega Fresh Market",
-        category: "Grocery & Fresh Produce",
-        type: "shop",
-        icon: "bi-basket3-fill",
-        rating: 4.6,
-        reviews: 128,
-        address: "12 Caledon St, Uitenhage",
-        phone: "+27415551201",
-        phoneDisplay: "041 555 1201",
-        hours: "Open until 7:00 PM",
-        isOpen: true,
-        tags: ["grocery", "fruit", "vegetables", "market", "food"]
-      },
-      {
-        name: "Baines Fashion Boutique",
-        category: "Clothing & Accessories",
-        type: "shop",
-        icon: "bi-bag-fill",
-        rating: 4.8,
-        reviews: 76,
-        address: "45 Baird St, Uitenhage",
-        phone: "+27415551242",
-        phoneDisplay: "041 555 1242",
-        hours: "Open until 5:00 PM",
-        isOpen: true,
-        tags: ["clothing", "fashion", "boutique", "accessories", "shoes"]
-      },
-      {
-        name: "Uitenhage Hardware & Tools",
-        category: "Hardware & Building Supplies",
-        type: "shop",
-        icon: "bi-tools",
-        rating: 4.5,
-        reviews: 94,
-        address: "8 Church St, Uitenhage",
-        phone: "+27415551278",
-        phoneDisplay: "041 555 1278",
-        hours: "Closed - opens 8:00 AM Mon",
-        isOpen: false,
-        tags: ["hardware", "tools", "building", "paint", "diy"]
-      },
-      {
-        name: "Speedy Auto Repairs",
-        category: "Mechanic & Auto Service",
-        type: "service",
-        icon: "bi-wrench-adjustable-circle-fill",
-        rating: 4.7,
-        reviews: 152,
-        address: "23 Durban St, Uitenhage",
-        phone: "+27415551309",
-        phoneDisplay: "041 555 1309",
-        hours: "Open until 6:00 PM",
-        isOpen: true,
-        tags: ["mechanic", "car", "auto", "repair", "tyres"]
-      },
-      {
-        name: "Bright Smile Dental Care",
-        category: "Dentist & Oral Health",
-        type: "service",
-        icon: "bi-heart-pulse-fill",
-        rating: 4.9,
-        reviews: 61,
-        address: "5 Cannon St, Uitenhage",
-        phone: "+27415551355",
-        phoneDisplay: "041 555 1355",
-        hours: "Closed - opens 8:30 AM Mon",
-        isOpen: false,
-        tags: ["dentist", "dental", "health", "clinic", "teeth"]
-      },
-      {
-        name: "QuickFix Plumbing Services",
-        category: "Plumber & Home Repairs",
-        type: "service",
-        icon: "bi-droplet-fill",
-        rating: 4.4,
-        reviews: 43,
-        address: "19 Jansen St, Uitenhage",
-        phone: "+27415551387",
-        phoneDisplay: "041 555 1387",
-        hours: "Open 24 hours",
-        isOpen: true,
-        tags: ["plumber", "plumbing", "leaks", "geyser", "home repair"]
-      }
-    ];
+
+    const places =[
+  {
+    "name": "Plumblink Uitenhage",
+    "category": "Plumbing Supply Store",
+    "type": "shop",
+    "icon": "bi-wrench-adjustable",
+    "rating": 3.5,
+    "reviews": 4,
+    "address": "Shop 1, 100 Durban St, Kariega Central, Kariega, 6229",
+    "phone": "+27871593683",
+    "phoneDisplay": "087 159 3683",
+    "hours": "Open until 5:00 PM",
+    "isOpen": true,
+    "tags": [
+      "plumbing", "geysers", "sanitaryware", "taps", "pipes", "hardware", 
+      "water tanks", "valves", "pvc fittings", "copper pipes", "drainage", 
+      "bathroom mixers", "kitchen sinks", "plumline", "copperman", "brassman",
+      "durban street", "kariega central", "uitenhage cbd", "plumber tools"
+    ],
+    "images": [
+      "./images/shops/plumblink/pb-1.jpg",
+      "./images/shops/plumblink/pb-2.jpg",
+      "./images/shops/plumblink/pb-3.jpg"
+    ]
+  },
+  {
+    "name": "TopT Uitenhage",
+    "category": "Tile & Home Finishing Store",
+    "type": "shop",
+    "icon": "bi-grid-3x3-gap-fill",
+    "rating": 4.2,
+    "reviews": 65,
+    "address": "Durban St, Kariega Central, Kariega, 6229",
+    "phone": "+27414506602",
+    "phoneDisplay": "041 450 6602",
+    "hours": "Open until 5:00 PM",
+    "isOpen": true,
+    "tags": [
+      "tiles", "paint", "bathrooms", "ceilings", "home renovation", "finishes", 
+      "ceramic tiles", "porcelain tiles", "tile adhesive", "grout", "pvc ceiling panels", 
+      "cladding", "bathroom accessories", "laminate flooring", "durban street", 
+      "kariega central", "floor tiles", "wall tiles", "affordable renovation"
+    ],
+    "images": [
+      "./images/shops/top-t/tt-1.jpg",
+      "./images/shops/top-t/tt-2.jpg",
+      "./images/shops/top-t/tt-3.jpg"
+    ]
+  },
+  {
+    "name": "Cashbuild Uitenhage",
+    "category": "Building Materials Retailer",
+    "type": "shop",
+    "icon": "bi-bricks",
+    "rating": 3.8,
+    "reviews": 272,
+    "address": "117 Durban St, Kariega Central, Kariega, 6229",
+    "phone": "+27419910974",
+    "phoneDisplay": "041 991 0974",
+    "hours": "Open until 6:00 PM",
+    "isOpen": true,
+    "tags": [
+      "cement", "bricks", "timber", "roofing", "paint", "hardware", "diy", 
+      "structural steel", "corrugated iron", "fencing", "glass cutting", "plan reading", 
+      "aggregate sand", "building blocks", "lintels", "doors", "windows", "durban street", 
+      "kariega central", "contractor supply", "bulk building materials"
+    ],
+    "images": [
+      "./images/shops/cashbuild/cb-1.jpg",
+      "./images/shops/cashbuild/cb-2.jpg",
+      "./images/shops/cashbuild/cb-3.jpg"
+    ]
+  },
+  {
+    "name": "BUCO Kariega",
+    "category": "Hardware & Build Centre",
+    "type": "shop",
+    "icon": "bi-hammer",
+    "rating": 4.0,
+    "reviews": 380,
+    "address": "John St, Kariega Central, Kariega, 6229",
+    "phone": "+27419229920",
+    "phoneDisplay": "041 922 9920",
+    "hours": "Open until 5:00 PM",
+    "isOpen": true,
+    "tags": [
+      "timber", "tools", "electrical", "plumbing", "paint", "industrial", "hardware", 
+      "power tools", "hand tools", "boards", "roof trusses", "fasteners", "bolts and nuts", 
+      "protective gear", "safety wear", "john street", "durban street premises", 
+      "kariega central", "commercial builders", "diy crafts"
+    ],
+    "images": [
+      "./images/shops/buco/bu-1.jpg",
+      "./images/shops/buco/bu-2.jpg",
+      "./images/shops/buco/bu-3.jpg"
+    ]
+  },
+  {
+    "name": "Build it Kariega",
+    "category": "Building Materials & Hardware",
+    "type": "shop",
+    "icon": "bi-house-gear-fill",
+    "rating": 4.4,
+    "reviews": 69,
+    "address": "148 Durban St, Kariega Central, Kariega, 6229",
+    "phone": "+27411101309",
+    "phoneDisplay": "041 110 1309",
+    "hours": "Open until 5:00 PM",
+    "isOpen": true,
+    "tags": [
+      "building materials", "hardware", "home improvement", "tools", "construction", 
+      "decorative paint", "garden tools", "rainwater harvesting", "joojo tanks", "fencing rolls", 
+      "geysers", "kitchen units", "hand tools", "durban street", "kariega central", 
+      "home renovation", "residential building"
+    ],
+    "images": [
+      "./images/shops/build-it/bi-1.jpg",
+      "./images/shops/build-it/bi-2.jpg",
+      "./images/shops/build-it/bi-3.jpg"
+    ]
+  },
+  {
+    "name": "Builders Express Uitenhage",
+    "category": "Home Improvement Centre",
+    "type": "shop",
+    "icon": "bi-shop",
+    "rating": 4.1,
+    "reviews": 639,
+    "address": "Shopping Centre, Queen Mary St, Cannon Hill, Kariega, 6229",
+    "phone": "+27860009518",
+    "phoneDisplay": "0860 009 518",
+    "hours": "Open until 6:00 PM",
+    "isOpen": true,
+    "tags": [
+      "diy enthusiast", "homeowner", "hardware store", "garden nursery", "appliances", 
+      "lighting fixtures", "electrical tools", "custom paint mixing", "heaters", "indoor furniture", 
+      "pool care", "locksets", "braai accessories", "queen mary street", "cannon hill", 
+      "one stop shopping", "massmart builders"
+    ],
+    "images": [
+      "./images/shops/builders-express/be-1.jpg",
+      "./images/shops/builders-express/be-2.jpg",
+      "./images/shops/builders-express/be-3.jpg"
+    ]
+  },
+  {
+    "name": "Dajee's Hardware",
+    "category": "General Hardware & Steel Supplier",
+    "type": "shop",
+    "icon": "bi-tools",
+    "rating": 4.3,
+    "reviews": 261,
+    "address": "76-78 Durban St, Kariega Central, Kariega, 6230",
+    "phone": "+27419958300",
+    "phoneDisplay": "041 995 8300",
+    "hours": "Open until 5:00 PM",
+    "isOpen": true,
+    "tags": [
+      "industrial hardware", "domestic hardware", "steel supplies", "bolts and nuts", "screws", 
+      "safety department", "workwear", "protective boots", "paint store", "electrical spares", 
+      "plumbing parts", "durban street", "kariega central", "local legacy shop", "variety stock"
+    ],
+    "images": [
+      "./images/shops/dajees-hardware/dj-1.jpg",
+      "./images/shops/dajees-hardware/dj-2.jpg",
+      "./images/shops/dajees-hardware/dj-3.jpg"
+    ]
+  },
+  {
+    "name": "Gelmar Uitenhage",
+    "category": "Kitchen & Bathroom Fittings Specialist",
+    "type": "shop",
+    "icon": "bi-door-closed-fill",
+    "rating": 4.8,
+    "reviews": 39,
+    "address": "Penford Shopping Centre, Cnr Graaff-Reinet Rd & Gibson St, Mosel, Kariega, 6229",
+    "phone": "+27414501635",
+    "phoneDisplay": "041 450 1635",
+    "hours": "Open until 5:00 PM",
+    "isOpen": true,
+    "tags": [
+      "kitchen handles", "cabinet hinges", "drawer runners", "built in cupboards", "homeware", 
+      "bathroom accessories", "home decor", "furniture fittings", "diy kitchen", "knobs", 
+      "penford shopping centre", "graaff reinet road", "mosel", "specialised hardware"
+    ],
+    "images": [
+      "./images/shops/gelmar/pic-1.jpg",
+      "./images/shops/gelmar/pic-2.jpg", 
+      "./images/shops/gelmar/pic-3.jpg"
+    ]
+  },
+  {
+    "name": "Sam's Hardware And Locksmiths",
+    "category": "Locksmith & Specialised Hardware",
+    "type": "shop",
+    "icon": "bi-key-fill",
+    "rating": 4.5,
+    "reviews": 64,
+    "address": "113 Durban St, Kariega Central, Kariega, 6229",
+    "phone": "+27419922507",
+    "phoneDisplay": "041 992 2507",
+    "hours": "Open until 5:00 PM",
+    "isOpen": true,
+    "tags": [
+      "locksmith", "key cutting", "padlocks", "door locks", "boot lock repairs", 
+      "safe keys", "transponder keys", "security locks", "general hardware", 
+      "durban street", "kariega central", "fast key repair", "lock replacement"
+    ],
+    "images": [
+      "./images/shops/sams-hardware-and-locksmith/pic-1.jpg",
+      "./images/shops/sams-hardware-and-locksmith/pic-2.jpg",
+      "./images/shops/sams-hardware-and-locksmith/pic-3.jpg"
+    ]
+  },
+  {
+    "name": "Royal Tent Gqeberha/PE",
+  "category": "Tent Manufacturers & Suppliers",
+  "type": "shop",
+  "icon": "bi-house-heart",
+  "rating": 0,
+  "reviews": 0,
+  "address": "10 Albany Rd, Gqeberha Central, Gqeberha, 6001",
+  "phone": "+27605516831",
+  "phoneDisplay": "060 551 6831",
+  "hours": "Open until 4:30 PM",
+  "isOpen": true,
+  "tags": [
+    "tents for sale", "peg and pole tents", "frame tents", "stretch tents", 
+    "pagoda tents", "mobile chillers", "mobile kitchens", "mobile coldrooms", 
+    "mobile vip toilets", "jumping castles", "event equipment", "albany road", 
+    "gqeberha central", "party supplier", "heavy duty tents"
+  ],
+    "images": [
+      "./images/shops/royal-tent/rt-1.jpg",
+      "./images/shops/royal-tent/rt-2.jpg",
+      "./images/shops/royal-tent/rt-3.jpg",
+      "./images/shops/royal-tent/rt-4.jpg",
+      "./images/shops/royal-tent/rt-5.jpg",
+      "./images/shops/royal-tent/rt-6.jpg",
+      "./images/shops/royal-tent/rt-7.jpg",
+      "./images/shops/royal-tent/rt-8.jpg"
+    ]
+  },
+        // SERVICE OBJECTS
+  {
+      "name": "Lloyd Deliveries",
+      "category": "Delivery Services",
+      "type": "service",
+      "icon": "bi-truck",
+      "rating": 0,
+      "reviews": 0,
+      "address": "36 Cushe Street, kwaNobuhle",
+      "phone": "+27799428638",
+      "phoneDisplay": "079 942 8638",
+      "hours": "Open 24 hours",
+      "isOpen": true,
+      "tags": [
+  "delivery", "delivery driver", "courier", "driver", "bakkie hire", "truck hire", "transport", "logistics", "parcel delivery", "package delivery",
+  "moving", "movers", "furniture removal", "home moving", "house removal", "office moving", "office relocation", "business relocation",
+  "local moving", "long distance moving", "intercity moving", "mini movers", "small moves", "large moves", "packing services", "unpacking",
+  "moving boxes", "bubble wrap", "bubble wrapping", "furniture protection", "heavy lifting", "appliance transport", "fridge transport",
+  "sofa delivery", "bed moving", "piano moving", "disassembly", "reassembly", "furniture assembly", "man with a van", "man and a bakkie",
+  "same day delivery", "express delivery", "urgent delivery", "last mile delivery", "store pickup", "click and collect delivery"
+]
+,
+      "images": [
+        "images/services/loyd-deliveries/ld-1.jpg",
+        "images/services/loyd-deliveries/ld-2.jpg",
+        "images/services/loyd-deliveries/ld-1.jpg"
+      ]
+},{
+      "name": "Xolani Plumbers",
+      "category": "Plumber & Home Repairs",
+      "type": "service",
+      "icon": "bi-droplet-fill",
+      "rating": 0,
+      "reviews": 0,
+      "address": "79 Khaila Road",
+      "phone": "+27675687669",
+      "phoneDisplay": "067 568 7669",
+      "hours": "Open 24 hours",
+      "isOpen": true,
+      "tags":[
+  "plumber", "plumbing", "leaks", "geyser", "home repair",
+  "burst geyser", "solar geyser", "gas geyser", "geyser replacement", "geyserwise element",
+  "thermostat swap", "pressure control valve", "vacuum breaker", "drip tray", "geyser blanket",
+  "blocked drains", "drain unblocking", "drain rods", "high pressure jetting", "sewer line repair",
+  "clogged toilet", "toilet installation", "flush mechanism", "toilet seat replacement", "concealed cistern",
+  "leaking tap", "tap installation", "cobra taps", "mixer taps", "bathroom mixers",
+  "kitchen sinks", "franke sinks", "waste traps", "bottle traps", "flexible connectors",
+  "water tanks", "jojo tanks", "water pump", "borehole pump", "tank connectors",
+  "pvc fittings", "copper pipes", "hdpe pipes", "galvanised pipes", "polylock fittings",
+  "drainage", "valves", "stopcock", "gate valve", "non return valve",
+  "leak detection", "waterproofing", "low water pressure", "bathroom renovation", "kitchen plumbing"
+],
+      "images": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY66BHkCbAU_Zm1pk7N4ZD5E0ghGk0I8MHv9MRxO7BWw&s=10",
+        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1607472829120-2f9e8f9c1a0f?w=900&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1580901369030-42e443bd7c17?w=900&q=80&auto=format&fit=crop"
+      ]
+    },{
+      "name": "Cya",
+      "category": "Built-In Installer",
+      "type": "service",
+      "icon": "bi-door-closed-fill",
+      "rating": 0,
+      "reviews": 0,
+      "address": "Uitenhage / Kariega, Eastern Cape",
+      "phone": "+27345678912",
+      "phoneDisplay": "034 567 8912",
+      "hours": "Open 24 hours",
+      "isOpen": true,
+      "tags": [
+        "carpenter", "carpentry", "woodwork", "built in cupboards", "home renovations",
+        "wardrobes", "bic installation", "kitchen cupboards", "kitchen designer", "cabinet maker",
+        "custom cabinets", "floating shelves", "bookshelves", "tv units", "plasma stands",
+        "vanities", "bathroom cupboards", "bars", "wooden bars", "wood carving",
+        "wood turners", "melamine boards", "mdf boards", "supawood", "plywood",
+        "solid wood", "pine wood", "oak wood", "saligna", "hardwood",
+        "laminated flooring", "skirting boards", "architraves", "wooden decking", "decking repair",
+        "pergolas", "wooden fencing", "drywall partitioning", "ceilings", "pvc ceilings",
+        "knotty pine", "flush doors", "solid doors", "door hanging", "door trimming",
+        "lock fitting", "handle installation", "hinge replacement", "drawer runners", "cabinet hinges",
+        "wood sanding", "wood varnishing", "wood staining", "cupboard repairs", "sagging shelves"
+],
+
+      "images": [
+        "https://bespokedesigns.co.za/wp-content/uploads/2021/08/20180816_141513-scaled.jpg",
+        "https://bespokedesigns.co.za/wp-content/uploads/2021/08/20180816_141513-scaled.jpg",
+        "https://bespokedesigns.co.za/wp-content/uploads/2021/08/20180816_141513-scaled.jpg",
+        "https://bespokedesigns.co.za/wp-content/uploads/2021/08/20180816_141513-scaled.jpg"
+      ]
+    },{
+      "name": "Liyanda Hardware",
+      "category": "Zinc Builder",
+      "type": "service",
+      "icon": "bi-router",
+      "rating": 0,
+      "reviews": 0,
+      "address": "26 Cushe Street, kwaNobuhle",
+      "phone": "+27767336611",
+      "phoneDisplay": "076 733 6611",
+      "hours": "Open 24 hours",
+      "isOpen": true,
+      "tags": [
+        "Zinc installer"
+]
+,
+      "images": [
+        "images/services/liyanda-hardware/lh-1.jpg",
+        "images/services/liyanda-hardware/lh-2.jpg",
+        "images/services/liyanda-hardware/lh-3.jpg",
+        "images/services/liyanda-hardware/lh-4.jpg",
+        "images/services/liyanda-hardware/lh-5.jpg",
+        "images/services/liyanda-hardware/lh-6.jpg",
+        "images/services/liyanda-hardware/lh-7.jpg",
+        "images/services/liyanda-hardware/lh-8.jpg",
+        "images/services/liyanda-hardware/lh-9.jpg",
+        "images/services/liyanda-hardware/lh-10.jpg"
+      ]
+    },{
+      "name": "Maxhala General Trading",
+      "category": "Cardboard Builder",
+      "type": "service",
+      "icon": "bi-router",
+      "rating": 0,
+      "reviews": 0,
+      "address": "31 Mawhala Street, kwaNobuhle",
+      "phone": "+27625781624",
+      "phoneDisplay": "062 578 1624",
+      "hours": "Open 24 hours",
+      "isOpen": true,
+      "tags": [
+        "Carboard builder"
+]
+,
+      "images": [
+        "images/services/maxhala-general-trading/mgt-1.jpg",
+        "images/services/maxhala-general-trading/mgt-2.jpg",
+        "images/services/maxhala-general-trading/mgt-3.jpg",
+        "images/services/maxhala-general-trading/mgt-4.jpg",
+        "images/services/maxhala-general-trading/mgt-5.jpg",
+        "images/services/maxhala-general-trading/mgt-6.jpg",
+        "images/services/maxhala-general-trading/mgt-7.jpg",
+        "images/services/maxhala-general-trading/mgt-8.jpg",
+        "images/services/maxhala-general-trading/mgt-9.jpg",
+        "images/services/maxhala-general-trading/mgt-10.jpg"
+      ]
+    },{
+      "name": "MSM Sat (PTY) LTD",
+      "category": "Dstv Installation and Repairs",
+      "type": "service",
+      "icon": "bi-router",
+      "rating": 0,
+      "reviews": 0,
+      "address": "7 Katsha Street, kwaNobuhle",
+      "phone": "+27768409216",
+      "phoneDisplay": "076 840 9216",
+      "hours": "Open 24 hours",
+      "isOpen": true,
+      "tags": [
+  "dstv", "dstv installations", "dstv installer", "satellite", "satellite dish", "dish installation", "60cm dish", "90cm dish", "wall bracket", "lnb", "cabling", "cable replacement", 
+  "hd decoder", "explora", "explora ultra", "smart lnb", "multi decoder", "single view", "extra view", "xtra view", "third view", "decoder link", 
+  "decoder activation", "dstv reactivation", "relocation", "dstv relocation", "dismantle", "reinstall", "site assessment", "signal testing", 
+  "signal repairs", "no signal", "lnb replacement", "tv wall mounting", "cable concealing", "commercial installations", "hotels", "lodges", "estates", 
+  "fault finding", "dstv maintenance", "dstv repairs", "openview", "starsat"
+]
+,
+      "images": [
+        "images/services/msm-sat/msm-1.jpg",
+        "images/services/msm-sat/msm-2.jpg",
+        "images/services/msm-sat/msm-1.jpg"
+      ]
+    },{
+      "name": "Emangxongweni Hiring Services",
+      "category": "Event Equipment Hiring",
+      "type": "service",
+      "icon": "bi-house",
+      "rating": 0,
+      "reviews": 0,
+      "address": "18 Ketshana Street, kwaNobuhle",
+      "phone": "+27679368224",
+      "phoneDisplay": "067 936 8224",
+      "hours": "Open 24 hours",
+      "isOpen": true,
+      "tags": [
+
+  "mgidi hire", "traditional celebration", "hart pots", "gas stoves", "enamel dishes", 
+  "enamel mugs", "plastic chairs", "catering equipment hire", "three-legged pots", "cooking pots", 
+  "gas burners", "big pots", "event hiring", "umgidi equipment", "chair rentals", 
+  "party hiring", "community events", "large scale cooking", "kitchenware rental", "serving dishes"
+
+
+]
+,
+      "images": [
+        "images/services/msm-sat/msm.jpg",
+        "images/services/msm-sat/msm.jpg",
+        "images/services/msm-sat/msm.jpg"
+      ]
+    }
+];
+
+    // Attach a stable index to every place so cards can reference the modal by id
+    places.forEach((p, i) => { p._id = i; });
 
     // Popular search suggestions shown as tappable chips
-    const popularSearches = ["mechanic", "grocery", "dentist", "clothing", "plumber", "hardware"];
+    const popularSearches = ["tools", "paint store", "dentist", "clothing", "plumber", "hardware"];
 
     let activeFilter = "all";
     let searchTerm = "";
@@ -718,6 +1696,29 @@
     const listingTally = document.getElementById("listingTally");
     const startSuggestions = document.getElementById("startSuggestions");
     const emptySuggestions = document.getElementById("emptySuggestions");
+
+    // Gallery modal elements
+    const galleryModalEl = document.getElementById("galleryModal");
+    const galleryModal = new bootstrap.Modal(galleryModalEl);
+    const galleryCarouselEl = document.getElementById("galleryCarousel");
+    const galleryCarouselInner = document.getElementById("galleryCarouselInner");
+    const galleryThumbRail = document.getElementById("galleryThumbRail");
+    const galleryCounter = document.getElementById("galleryCounter");
+    const galleryHeaderIcon = document.getElementById("galleryHeaderIcon");
+    const galleryHeaderIconGlyph = document.getElementById("galleryHeaderIconGlyph");
+    const galleryModalLabel = document.getElementById("galleryModalLabel");
+    const galleryModalSubtitle = document.getElementById("galleryModalSubtitle");
+    const galleryTypeBadge = document.getElementById("galleryTypeBadge");
+    const galleryRating = document.getElementById("galleryRating");
+    const galleryAddress = document.getElementById("galleryAddress");
+    const galleryHoursRow = document.getElementById("galleryHoursRow");
+    const galleryHours = document.getElementById("galleryHours");
+    const galleryCallBtn = document.getElementById("galleryCallBtn");
+    const galleryDirectionsBtn = document.getElementById("galleryDirectionsBtn");
+    const galleryDirectionsIcon = document.getElementById("galleryDirectionsIcon");
+    const galleryDirectionsLabel = document.getElementById("galleryDirectionsLabel");
+
+    let bsCarousel = null;
 
     // Set the header tally, e.g. "6 places · 3 shops · 3 services"
     function initTally() {
@@ -752,43 +1753,88 @@
       return text.replace(re, "<mark class=\"search-highlight\">$1</mark>");
     }
 
+    // Builds the little 3-photo teaser grid shown at the top of each card
+    function createThumbStrip(place) {
+      const imgs = place.images || [];
+      if (imgs.length === 0) return "";
+
+      const extraCount = imgs.length - 3;
+      const subThumbs = imgs.slice(1, 3).map((src, i) => {
+        const isLastVisible = i === 1 && extraCount > 0;
+        return `
+          <div class="thumb-sub">
+            <img src="${src}" alt="${place.name} photo ${i + 2}" loading="lazy">
+            ${isLastVisible ? `<div class="thumb-more-overlay">+${extraCount}</div>` : ""}
+          </div>
+        `;
+      }).join("");
+
+      return `
+        <div class="place-thumb-strip">
+          <div class="thumb-main">
+            <img src="${imgs[0]}" alt="${place.name} - ${place.category} in Uitenhage" loading="lazy">
+          </div>
+          ${subThumbs}
+        </div>
+      `;
+    }
+
+    // Services get a WhatsApp button instead of Directions (most are mobile/home-based
+    // and don't have a fixed storefront customers can navigate to). Shops keep Directions.
+    function whatsappUrl(place) {
+      const digits = (place.phone || "").replace(/[^\d]/g, "");
+      const text = encodeURIComponent(`Hi ${place.name}, I found you on the Uitenhage & Kariega directory and would like to ask about your services.`);
+      return `https://wa.me/${digits}?text=${text}`;
+    }
+
     function createCard(place) {
       const typeLabel = place.type === "shop" ? "Shop" : "Service";
       const hoursClass = place.isOpen ? "open" : "closed";
       const hoursIcon = place.isOpen ? "bi-clock-fill" : "bi-clock";
       const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name + " " + place.address)}`;
+      const isService = place.type === "service";
+      const secondaryUrl = isService ? whatsappUrl(place) : mapsUrl;
+      const secondaryIcon = isService ? "bi-whatsapp" : "bi-signpost-2-fill";
+      const secondaryLabel = isService ? "WhatsApp" : "Directions";
+      const photoCount = (place.images || []).length;
 
       return `
         <div class="col-12 col-md-6 col-lg-4">
-          <div class="place-card d-flex gap-3">
-            <div class="place-icon ${place.type}">
-              <i class="bi ${place.icon}" aria-hidden="true"></i>
-            </div>
-            <div class="flex-grow-1">
-              <div class="d-flex justify-content-between align-items-start gap-2">
-                <p class="place-name">${highlight(place.name, searchTerm)}</p>
-                <span class="place-type-badge ${place.type}">${typeLabel}</span>
+          <div class="place-card" data-place-id="${place._id}" role="button" tabindex="0" aria-label="View photos and details for ${place.name}">
+            ${createThumbStrip(place)}
+            <div class="d-flex gap-3">
+              <div class="place-icon ${place.type}">
+                <i class="bi ${place.icon}" aria-hidden="true"></i>
               </div>
-              <p class="place-category">${highlight(place.category, searchTerm)}</p>
-              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <div class="place-meta">
-                  <i class="bi bi-geo-alt" aria-hidden="true"></i> ${place.address}
+              <div class="flex-grow-1">
+                <div class="d-flex justify-content-between align-items-start gap-2">
+                  <p class="place-name">${highlight(place.name, searchTerm)}</p>
+                  <span class="place-type-badge ${place.type}">${typeLabel}</span>
                 </div>
-                <div class="place-rating">
-                  <i class="bi bi-star-fill" aria-hidden="true"></i> ${place.rating}
-                  <span class="text-muted fw-normal">(${place.reviews})</span>
+                <p class="place-category">${highlight(place.category, searchTerm)}</p>
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                  <div class="place-meta">
+                    <i class="bi bi-geo-alt" aria-hidden="true"></i> ${place.address}
+                  </div>
+                  <div class="place-rating">
+                    <i class="bi bi-star-fill" aria-hidden="true"></i> ${place.rating}
+                    <span class="text-muted fw-normal">(${place.reviews})</span>
+                  </div>
                 </div>
-              </div>
-              <p class="place-hours ${hoursClass}">
-                <i class="bi ${hoursIcon}" aria-hidden="true"></i> ${place.hours}
-              </p>
-              <div class="place-actions">
-                <a class="place-action-btn call" href="tel:${place.phone}">
-                  <i class="bi bi-telephone-fill" aria-hidden="true"></i> Call
-                </a>
-                <a class="place-action-btn directions" href="${mapsUrl}" target="_blank" rel="noopener">
-                  <i class="bi bi-signpost-2-fill" aria-hidden="true"></i> Directions
-                </a>
+                <p class="place-hours ${hoursClass}">
+                  <i class="bi ${hoursIcon}" aria-hidden="true"></i> ${place.hours}
+                </p>
+                <div class="place-actions">
+                  <a class="place-action-btn call" href="tel:${place.phone}" data-no-card-click>
+                    <i class="bi bi-telephone-fill" aria-hidden="true"></i> Call
+                  </a>
+                  <a class="place-action-btn directions" href="${secondaryUrl}" target="_blank" rel="noopener" data-no-card-click>
+                    <i class="bi ${secondaryIcon}" aria-hidden="true"></i> ${secondaryLabel}
+                  </a>
+                  <button type="button" class="place-action-btn gallery-btn" data-place-id="${place._id}" data-no-card-click aria-label="View ${photoCount} photos of ${place.name}">
+                    <i class="bi bi-images" aria-hidden="true"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -820,18 +1866,11 @@
 
     function render() {
       const hasQuery = searchTerm.length > 0;
-      const hasCategory = activeFilter !== "all";
 
-      // Nothing to show yet: no search typed AND no category chosen.
-      if (!hasQuery && !hasCategory) {
-        resultsGrid.innerHTML = "";
-        emptyState.classList.add("d-none");
-        startState.classList.remove("d-none");
-        resultsCount.textContent = "Search for a shop or service to see results";
-        return;
-      }
-
-      startState.classList.add("d-none");
+      // Show popular-search chips as a discovery aid only while the visitor
+      // hasn't typed anything yet — but always render the full directory
+      // below it, so the listings are visible (and crawlable) by default.
+      startState.classList.toggle("d-none", hasQuery);
 
       let filtered = places.filter(place => {
         const typeMatch = activeFilter === "all" || place.type === activeFilter;
@@ -851,6 +1890,119 @@
       const noun = activeFilter === "shop" ? "shop" : activeFilter === "service" ? "service" : "result";
       const plural = filtered.length === 1 ? noun : noun + "s";
       resultsCount.textContent = `${filtered.length} ${plural} found in Uitenhage`;
+
+      attachCardHandlers();
+    }
+
+    // ---------- Gallery modal logic ----------
+
+    function openGallery(place) {
+      // Header
+      galleryHeaderIcon.className = `gallery-header-icon ${place.type}`;
+      galleryHeaderIconGlyph.className = `bi ${place.icon}`;
+      galleryModalLabel.textContent = place.name;
+      galleryModalSubtitle.textContent = place.category;
+
+      // Info body
+      galleryTypeBadge.textContent = place.type === "shop" ? "Shop" : "Service";
+      galleryTypeBadge.className = `place-type-badge ${place.type}`;
+      galleryRating.innerHTML = `<i class="bi bi-star-fill" aria-hidden="true"></i> ${place.rating} <span class="text-muted fw-normal">(${place.reviews} reviews)</span>`;
+      galleryAddress.textContent = place.address;
+      galleryHours.textContent = place.hours;
+      galleryHoursRow.className = `gallery-info-row mb-0 ${place.isOpen ? "text-success" : "text-danger"}`;
+
+      // Footer actions
+      galleryCallBtn.href = `tel:${place.phone}`;
+      if (place.type === "service") {
+        galleryDirectionsBtn.href = whatsappUrl(place);
+        galleryDirectionsIcon.className = "bi bi-whatsapp";
+        galleryDirectionsLabel.textContent = "WhatsApp";
+      } else {
+        galleryDirectionsBtn.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name + " " + place.address)}`;
+        galleryDirectionsIcon.className = "bi bi-signpost-2-fill";
+        galleryDirectionsLabel.textContent = "Directions";
+      }
+
+      // Carousel slides
+      const imgs = place.images && place.images.length ? place.images : [];
+      galleryCarouselInner.innerHTML = imgs.map((src, i) => `
+        <div class="carousel-item ${i === 0 ? "active" : ""}">
+          <img src="${src}" alt="Photo ${i + 1} of ${place.name}" loading="${i === 0 ? "eager" : "lazy"}">
+        </div>
+      `).join("");
+
+      // Thumbnail rail
+      galleryThumbRail.innerHTML = imgs.map((src, i) => `
+        <button type="button" class="${i === 0 ? "active" : ""}" data-slide-to="${i}" aria-label="Go to photo ${i + 1}">
+          <img src="${src}" alt="" loading="lazy">
+        </button>
+      `).join("");
+
+      updateGalleryCounter(0, imgs.length);
+
+      // Dispose and recreate the carousel instance for a clean slide state
+      if (bsCarousel) {
+        bsCarousel.dispose();
+      }
+      bsCarousel = new bootstrap.Carousel(galleryCarouselEl, { ride: false, wrap: true });
+
+      galleryThumbRail.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const idx = parseInt(btn.dataset.slideTo, 10);
+          bsCarousel.to(idx);
+        });
+      });
+
+      galleryModal.show();
+    }
+
+    function updateGalleryCounter(activeIndex, total) {
+      if (total === 0) {
+        galleryCounter.textContent = "";
+        return;
+      }
+      galleryCounter.textContent = `${activeIndex + 1} / ${total}`;
+    }
+
+    galleryCarouselEl.addEventListener("slid.bs.carousel", (e) => {
+      const items = Array.from(galleryCarouselInner.querySelectorAll(".carousel-item"));
+      const activeIndex = items.indexOf(e.relatedTarget);
+      updateGalleryCounter(activeIndex, items.length);
+
+      galleryThumbRail.querySelectorAll("button").forEach((btn, i) => {
+        btn.classList.toggle("active", i === activeIndex);
+      });
+    });
+
+    // Reset carousel autoplay/state cleanly whenever the modal is fully closed
+    galleryModalEl.addEventListener("hidden.bs.modal", () => {
+      galleryCarouselInner.innerHTML = "";
+      galleryThumbRail.innerHTML = "";
+    });
+
+    function attachCardHandlers() {
+      document.querySelectorAll(".place-card").forEach(card => {
+        card.addEventListener("click", (e) => {
+          if (e.target.closest("[data-no-card-click]")) return;
+          const place = places[parseInt(card.dataset.placeId, 10)];
+          if (place) openGallery(place);
+        });
+        card.addEventListener("keydown", (e) => {
+          if ((e.key === "Enter" || e.key === " ") && !e.target.closest("[data-no-card-click]")) {
+            e.preventDefault();
+            const place = places[parseInt(card.dataset.placeId, 10)];
+            if (place) openGallery(place);
+          }
+        });
+      });
+
+      document.querySelectorAll(".gallery-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const place = places[parseInt(btn.dataset.placeId, 10)];
+          if (place) openGallery(place);
+        });
+      });
     }
 
     searchInput.addEventListener("input", (e) => {
@@ -894,10 +2046,70 @@
       });
     });
 
+    // ---------- Structured data (JSON-LD) built from the real listings ----------
+    function injectStructuredData() {
+      const siteUrl = "https://www.YOURDOMAIN.co.za/";
+      const itemList = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": places.map((p, i) => ({
+          "@type": "ListItem",
+          "position": i + 1,
+          "item": {
+            "@type": p.type === "shop" ? "Store" : "LocalBusiness",
+            "name": p.name,
+            "image": (p.images || [])[0] ? new URL(p.images[0], siteUrl).href : undefined,
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": p.address,
+              "addressLocality": "Uitenhage / Kariega",
+              "addressRegion": "Eastern Cape",
+              "addressCountry": "ZA"
+            },
+            "telephone": p.phone,
+            "aggregateRating": p.reviews > 0 ? {
+              "@type": "AggregateRating",
+              "ratingValue": p.rating,
+              "reviewCount": p.reviews
+            } : undefined
+          }
+        }))
+      };
+      const el = document.getElementById("placesJsonLd");
+      if (el) el.textContent = JSON.stringify(itemList);
+    }
+
+    // ---------- Cookie consent banner ----------
+    function initCookieBanner() {
+      const banner = document.getElementById("cookieBanner");
+      const consent = localStorage.getItem("cookieConsent");
+      if (!consent) banner.classList.remove("d-none");
+
+      function setConsent(value) {
+        localStorage.setItem("cookieConsent", value);
+        banner.classList.add("d-none");
+        if (window.gtag) {
+          gtag('consent', 'update', {
+            ad_storage: value === 'accepted' ? 'granted' : 'denied',
+            ad_user_data: value === 'accepted' ? 'granted' : 'denied',
+            ad_personalization: value === 'accepted' ? 'granted' : 'denied',
+            analytics_storage: value === 'accepted' ? 'granted' : 'denied'
+          });
+        }
+      }
+
+      document.getElementById("cookieAccept").addEventListener("click", () => setConsent("accepted"));
+      document.getElementById("cookieDecline").addEventListener("click", () => setConsent("declined"));
+    }
+
     // Initial setup
     initTally();
     buildSuggestionChips(startSuggestions);
     buildSuggestionChips(emptySuggestions);
+    injectStructuredData();
+    initCookieBanner();
+    const footerYearEl = document.getElementById("footerYear");
+    if (footerYearEl) footerYearEl.textContent = new Date().getFullYear();
     render();
   </script>
 

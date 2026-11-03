@@ -1,0 +1,9 @@
+# robots.txt for https://www.YOURDOMAIN.co.za
+# Replace YOURDOMAIN with your real domain everywhere in this file
+# and in index.html before going live.
+
+User-agent: *
+Allow: /
+
+# Sitemap location (helps Google/Bing discover all pages faster)
+Sitemap: https://www.YOURDOMAIN.co.za/sitemap.xml

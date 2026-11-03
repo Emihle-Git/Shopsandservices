@@ -1,0 +1,9 @@
+# ads.txt — Authorized Digital Sellers file
+# This file MUST live at the root of your domain: https://www.YOURDOMAIN.co.za/ads.txt
+# It tells ad networks (and prevents fraudsters from spoofing your inventory).
+#
+# Once you're approved for Google AdSense, replace pub-0000000000000000
+# with YOUR actual publisher ID (find it in AdSense under Account Information).
+# The format is: <ad system domain>, <publisher ID>, <relationship>, [certification ID]
+
+google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
